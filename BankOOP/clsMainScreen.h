@@ -6,6 +6,7 @@
 #include "clsUpdateClient.h"
 #include "clsFindClient.h"
 #include "clsMainTransactionScreen.h"
+#include "clsMangeUsersScreen.h"
 class clsMainScreen : protected clsMainHeader
 {
 private:
@@ -17,7 +18,8 @@ private:
 		UpdateClient = 4,       // 4 - Update Clients
 		FindClient = 5,
 		Transactions = 6,
-		LogOut =7             // 5 - Log Out
+		MangeUsers=7,
+		LogOut =8             // 5 - Log Out
 	};
 	static void _AllOptions() {
 		cout << "1 - All Clients" << endl;
@@ -26,7 +28,8 @@ private:
 		cout << "4 - Update Clients" << endl;
 		cout << "5 - Find Client" << endl;
 		cout << "6 - Transactions" << endl;
-		cout << "7 - Log Out" << endl;
+		cout << "7 - Mange Users" << endl;
+		cout << "8 - Log Out" << endl;
 	}
 	  static int ReadInt() {
 		int choice;
@@ -72,6 +75,10 @@ private:
 		case Transactions:
 			system("cls");
 			clsMainTransactionScreen::MainScreenTransaction();
+			_GoBackToMainMenue();
+		case MangeUsers:
+			system("cls");
+			clsMangeUsersScreen::ShowMangeUsersScreen();
 			_GoBackToMainMenue();
 		case LogOut:
 			system("cls");
