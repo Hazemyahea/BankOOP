@@ -36,6 +36,7 @@ public:
 		if (Result == 'Y' || Result == 'y')
 		{
 			Client._DeleteObjectFromFile();
+			cout << "User Deleted!" << endl;
 		}
 		else {
 			cout << "Okay.. We Will Keep it" << endl;

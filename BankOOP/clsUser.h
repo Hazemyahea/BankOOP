@@ -4,6 +4,7 @@
 #include <vector>
 #include "clsString.h"
 #include <fstream>
+#include "clsInputValidate.h"
 class clsUser : public ClsPerson
 {
 private:
@@ -178,6 +179,19 @@ public:
 	}
 
 
+	static void ReadUser(clsUser& User) {
+		cout << "Enter First Name: ";
+		User.SetFirstName(clsInputValidate::ReadString());
+		cout << "Enter Last Name: ";
+		User.SetLastName(clsInputValidate::ReadString());
+		cout << "Enter Email: ";
+		User.SetEmail(clsInputValidate::ReadString());
+		cout << "Enter Phone: ";
+		User.SetPhone(clsInputValidate::ReadString());
+		cout << "Enter Password: ";
+		User.SetPassword(clsInputValidate::ReadString());
+
+	}
 	static clsUser Find(string UserName)
 	{
 		fstream MyFile;

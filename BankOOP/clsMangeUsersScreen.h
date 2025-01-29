@@ -3,7 +3,10 @@
 #include "clsInputValidate.h"
 #include <iomanip> 
 #include "clsUserAllList.h"
-
+#include "clsAddUser.h"
+#include "clsDeleteUser.h"
+#include "clsFindUser.h"
+#include "clsUpdateUser.h"
 class clsMangeUsersScreen : protected clsMainHeader
 {
 private:
@@ -41,22 +44,22 @@ private:
 			break;
 		case EnOptions::AddUser:
 			system("cls");
-			cout << "Show All Users" << endl;
+			clsAddUser::AddUserFn();
 			_GoBackToMainMenue();
 			break;
 		case EnOptions::DeleteUser:
 			system("cls");
-			cout << "Show All Users" << endl;
+			clsDeleteUser::DeleteUser();
 			_GoBackToMainMenue();
 			break;
 		case EnOptions::UpdateUser:
 			system("cls");
-			cout << "Show All Users" << endl;
+			clsUpdateUser::updateUser();
 			_GoBackToMainMenue();
 			break;
 		case EnOptions::FindUser:
 			system("cls");
-			cout << "Show All Users" << endl;
+			clsFindUser::GetUser();
 			_GoBackToMainMenue();
 			break;
 		case EnOptions::BackToMain:
