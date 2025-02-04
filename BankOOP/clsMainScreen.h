@@ -7,6 +7,7 @@
 #include "clsFindClient.h"
 #include "clsMainTransactionScreen.h"
 #include "clsMangeUsersScreen.h"
+#include "clsLogOut.h"
 class clsMainScreen : protected clsMainHeader
 {
 private:
@@ -82,8 +83,7 @@ private:
 			_GoBackToMainMenue();
 		case LogOut:
 			system("cls");
-			cout << "You Out!" << endl;
-			return;
+			clsLogOut::logOut();
 			break;
 		default:
 			cout << "Invalid choice!" << endl;

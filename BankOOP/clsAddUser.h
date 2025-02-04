@@ -15,7 +15,7 @@ private:
 		cout << "Phone: " << User.GetPhone() << endl;
 		cout << "Username: " << User.GetUserName() << endl;
 		cout << "Password: " << User.GetPassword() << endl;
-		cout << "Permissions: " << User.GetPermissions() << endl;
+		cout << "Permissions: " << User.GetPermission()<< endl;
 		cout << "---------------------------------\n";
 	}
 	

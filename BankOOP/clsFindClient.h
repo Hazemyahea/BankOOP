@@ -21,6 +21,10 @@ private:
 
 public:
 	static void FindClient() {
+		if (!isPermisson(clsUser::enMainMenuePermissions::pFind))
+		{
+			return;
+		}
 		MainHeader("Find Client");
 		string AccountNumber;
 		cout << "Write The Account Number: " << endl;

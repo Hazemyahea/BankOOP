@@ -78,6 +78,15 @@
     <ClCompile Include="clsUpdateUser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clsPermissions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clsLogin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clsLogOut.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clsUtil.h">
@@ -150,6 +159,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clsUpdateUser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsPermissions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsLogin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsLogOut.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,6 +5,8 @@
 #include "clsString.h"
 #include <fstream>
 #include "clsInputValidate.h"
+#include "clsPermissions.h"
+#include "ClsDate.h"
 class clsUser : public ClsPerson
 {
 private:
@@ -14,6 +16,7 @@ private:
 		UpdateMode = 1,
 		AddNewMode = 3,
 	};
+	
 	string _Username;
 	string _Password;
 	enMode _Mode;
@@ -46,6 +49,13 @@ private:
 
 	}
 
+	string _LogsRecoredToString(string mark) {
+		string Recored;
+		Recored += clsDate::GetSystemDateTimeString() + mark;
+		Recored += _Username + mark;
+		Recored += _Password;
+		return Recored;
+	}
 	static vector<clsUser> _loadUserFromFileToVector() {
 		vector<clsUser> VBankUser;
 		fstream file;
@@ -151,6 +161,12 @@ public:
 	int GetPermission() {
 		return _PerMission;
 	}
+	enum enMainMenuePermissions {
+		eAll = -1, pList = 1, pAddt = 2, pDelete
+		= 4,
+		pUpdate = 8, pFind = 16, pTranactions = 32,
+		pManageUsers = 64
+	};
 	bool IsEmpty()
 	{
 		return (_Mode == enMode::EmptyMode);
@@ -173,9 +189,62 @@ public:
 	{
 		_PerMission = Permissions;
 	}
-	int GetPermissions()
-	{
-		return _PerMission;
+	
+	static int ReadPermission() {
+		int permission = 0;
+		char answer;
+
+		// Check if the user wants all permissions
+		cout << "Add All Permissions? [y/n]: ";
+		cin >> answer;
+		if (answer == 'Y' || answer == 'y') {
+			return clsUser::enMainMenuePermissions::eAll; // Return -1 for all permissions
+		}
+
+		// Check individual permissions
+		cout << "Can Show All Clients? [y/n]: ";
+		cin >> answer;
+		if (answer == 'Y' || answer == 'y') {
+			permission += clsUser::enMainMenuePermissions::pList;
+		}
+
+		cout << "Can Add New Client? [y/n]: ";
+		cin >> answer;
+		if (answer == 'Y' || answer == 'y') {
+			permission += clsUser::enMainMenuePermissions::pAddt;
+		}
+
+		cout << "Can Delete Client? [y/n]: ";
+		cin >> answer;
+		if (answer == 'Y' || answer == 'y') {
+			permission += clsUser::enMainMenuePermissions::pDelete;
+		}
+
+		cout << "Can Update Client? [y/n]: ";
+		cin >> answer;
+		if (answer == 'Y' || answer == 'y') {
+			permission += clsUser::enMainMenuePermissions::pUpdate;
+		}
+
+		cout << "Can Find Client? [y/n]: ";
+		cin >> answer;
+		if (answer == 'Y' || answer == 'y') {
+			permission += clsUser::enMainMenuePermissions::pFind;
+		}
+
+		cout << "Can Perform Transactions? [y/n]: ";
+		cin >> answer;
+		if (answer == 'Y' || answer == 'y') {
+			permission += clsUser::enMainMenuePermissions::pTranactions;
+		}
+
+		cout << "Can Manage Users? [y/n]: ";
+		cin >> answer;
+		if (answer == 'Y' || answer == 'y') {
+			permission += clsUser::enMainMenuePermissions::pManageUsers;
+		}
+
+		return permission; // Return the calculated permission value
 	}
 
 
@@ -190,6 +259,8 @@ public:
 		User.SetPhone(clsInputValidate::ReadString());
 		cout << "Enter Password: ";
 		User.SetPassword(clsInputValidate::ReadString());
+		cout << "Enter Permissions" << endl;
+		User.SetPermissions(ReadPermission());
 
 	}
 	static clsUser Find(string UserName)
@@ -238,6 +309,18 @@ public:
 
 		}
 		return _GetEmptyUserObject();
+	}
+
+	void AddLogsToLogsFile() {
+		string Recored = _LogsRecoredToString("#//#");
+		fstream file;
+		string line;
+		file.open("Logs.txt", ios::out | ios::app);
+		if (file.is_open())
+		{
+			file << Recored << endl;	
+		}
+		file.close();
 	}
 
 	enum enSaveResults { svFaildEmptyObject = 0, svSucceeded = 1, svFaildUserExists = 2 };
@@ -317,6 +400,22 @@ public:
 	{
 		return clsUser(enMode::AddNewMode, "", "", "", "", UserName, "", 0);
 	}
+
+	 bool IsHavePermission(enMainMenuePermissions permission) {
+		// If the user has all permissions, return true
+
+		 if (this -> GetPermission() == enMainMenuePermissions::eAll) {
+			return true;
+		}
+
+		// Check if the user has the required permission
+		if ((permission & this->GetPermission()) == permission) {
+			return true;
+		}
+
+		return false;
+	}
+
 
 	static vector <clsUser> GetUsersList()
 	{

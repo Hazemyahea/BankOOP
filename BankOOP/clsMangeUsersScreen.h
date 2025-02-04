@@ -7,6 +7,7 @@
 #include "clsDeleteUser.h"
 #include "clsFindUser.h"
 #include "clsUpdateUser.h"
+#include "clsUser.h"
 class clsMangeUsersScreen : protected clsMainHeader
 {
 private:
@@ -35,6 +36,7 @@ private:
 		ShowMangeUsersScreen();
 	}
  static	void ReadChoose(EnOptions Options) {
+	
 		switch (Options)
 		{
 		case EnOptions::ShowAllUsers:
@@ -71,6 +73,10 @@ private:
 
 public:
 	static void ShowMangeUsersScreen() {
+		if (!isPermisson(clsUser::enMainMenuePermissions::pManageUsers))
+		{
+			return;
+		}
 		system("cls");
 		MainHeader("Mange Users");
 		_AllOptions();

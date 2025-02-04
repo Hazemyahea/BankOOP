@@ -20,6 +20,10 @@ class clsDeleteClient : protected clsMainHeader
 public:
     static
 		void DeleteClient() {
+		if (!isPermisson(clsUser::enMainMenuePermissions::pDelete))
+		{
+			return;
+		}
 		MainHeader("Delete Client");
 		string AccountNumber = "";
 		char Result;

@@ -2,6 +2,7 @@
 #include "clsMainHeader.h"
 #include "clsBankClient.h"
 #include <iomanip> 
+#include "clsPermissions.h"
 
 class clsAllClients : protected clsMainHeader
 {
@@ -18,6 +19,10 @@ private:
 
 public:
 	static void GetAllClients() {
+		if (!isPermisson(clsUser::enMainMenuePermissions::pList))
+		{
+			return;
+		}
 		vector<clsBankClient> Clients = clsBankClient::GetAllClients();
 
 		// عرض عنوان الجدول

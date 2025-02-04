@@ -30,6 +30,7 @@ private:
         MainScreenTransaction();
     }
     static void _ReadTransctionsChoose(enTransctions Choose) {
+      
         switch (Choose)
         {
         case enTransctions::Deposit:
@@ -55,6 +56,10 @@ private:
     }
 public:
     static void MainScreenTransaction() {
+        if (!isPermisson(clsUser::enMainMenuePermissions::pTranactions))
+        {
+            return;
+        }
         system("cls");
         MainHeader("Transaction");
         _ShowAllTransctions();

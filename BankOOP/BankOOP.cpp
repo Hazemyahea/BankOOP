@@ -2,13 +2,7 @@
 //
 
 #include <iostream>
-#include "ClsDate.h"
-#include "clsUtil.h"
-#include "clsBankClient.h"
-#include "clsInputValidate.h"
-#include <iomanip> // لتنسيق العرض
-#include "clsMainScreen.h"
-
+#include "clsLogin.h"
 using namespace std;
 
 
@@ -17,5 +11,12 @@ using namespace std;
 int main()
 {
 	
-	clsMainScreen::MainScreen();
+	while (true)
+	{
+		if (!clsLogin::showLoginScreen()) {
+			break;
+		}
+	}
+
+	return 0;
 ;}

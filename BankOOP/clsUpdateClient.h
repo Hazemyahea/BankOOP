@@ -21,6 +21,10 @@ private:
 
 public:
 	static void updateClient() {
+		if (!isPermisson(clsUser::enMainMenuePermissions::pUpdate))
+		{
+			return;
+		}
 		MainHeader("Update Client");
 		string AccountNumber = "";
 		cout << "Write Account Number" << endl;

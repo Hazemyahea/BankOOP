@@ -21,7 +21,12 @@ private:
 
 public:
 	static void AddClient() {
+		if (!isPermisson(clsUser::enMainMenuePermissions::pAddt))
+		{
+			return;
+		}
 		MainHeader("Add Client");
+
 		string AccountNumber = "";
 		cout << "Write Account Number" << endl;
 		cin >> AccountNumber;
