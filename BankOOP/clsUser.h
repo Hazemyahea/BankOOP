@@ -16,7 +16,7 @@ private:
 		UpdateMode = 1,
 		AddNewMode = 3,
 	};
-	
+
 	string _Username;
 	string _Password;
 	enMode _Mode;
@@ -49,11 +49,14 @@ private:
 
 	}
 
+	
+
 	string _LogsRecoredToString(string mark) {
 		string Recored;
 		Recored += clsDate::GetSystemDateTimeString() + mark;
 		Recored += _Username + mark;
-		Recored += _Password;
+		Recored += _Password + mark;
+		Recored += to_string(_PerMission);
 		return Recored;
 	}
 	static vector<clsUser> _loadUserFromFileToVector() {
@@ -138,7 +141,7 @@ private:
 	{
 		return clsUser(enMode::EmptyMode, "", "", "", "", "", "", 0);
 	}
-	
+
 public:
 	clsUser(enMode Mode, string FirstName, string LastName,
 		string Email, string Phone, string UserName, string Password,
@@ -151,6 +154,14 @@ public:
 		_Password = Password;
 		_PerMission = Permissions;
 	}
+
+	struct StLogs
+	{
+		string Date;
+		string userName;
+		string password;
+		int Permission;
+	};
 
 	string GetUserName() {
 		return _Username;
@@ -165,7 +176,7 @@ public:
 		eAll = -1, pList = 1, pAddt = 2, pDelete
 		= 4,
 		pUpdate = 8, pFind = 16, pTranactions = 32,
-		pManageUsers = 64
+		pManageUsers = 64,PLogs = 128
 	};
 	bool IsEmpty()
 	{
@@ -189,7 +200,7 @@ public:
 	{
 		_PerMission = Permissions;
 	}
-	
+
 	static int ReadPermission() {
 		int permission = 0;
 		char answer;
@@ -243,6 +254,11 @@ public:
 		if (answer == 'Y' || answer == 'y') {
 			permission += clsUser::enMainMenuePermissions::pManageUsers;
 		}
+		cout << "Can Enter Logs Screen? [y/n]: ";
+		cin >> answer;
+		if (answer == 'Y' || answer == 'y') {
+			permission += clsUser::enMainMenuePermissions::PLogs;
+		}
 
 		return permission; // Return the calculated permission value
 	}
@@ -262,6 +278,16 @@ public:
 		cout << "Enter Permissions" << endl;
 		User.SetPermissions(ReadPermission());
 
+	}
+
+	static StLogs _FromLogsFileToString(string Logs) {
+		StLogs NewLogs;
+		vector <string> Vlogs = clsString::Split(Logs, "#//#");
+		NewLogs.Date = Vlogs[0];
+		NewLogs.userName = Vlogs[1];
+		NewLogs.password = Vlogs[2];
+		NewLogs.Permission = stoi(Vlogs[3]);
+		return NewLogs;
 	}
 	static clsUser Find(string UserName)
 	{
@@ -287,6 +313,28 @@ public:
 
 		return _GetEmptyUserObject();
 	}
+
+
+	static vector<StLogs> GetLosgFromLogsFile()
+	{
+		vector <StLogs> Logs;
+		fstream MyFile;
+		MyFile.open("Logs.txt", ios::in);//read Mode
+
+		if (MyFile.is_open())
+		{
+			string Line;
+			while (getline(MyFile, Line))
+			{
+				Logs.push_back(_FromLogsFileToString(Line));
+			}
+
+			MyFile.close();
+
+		}
+		return Logs;
+	}
+	
 	static clsUser Find(string UserName, string Password)
 	{
 

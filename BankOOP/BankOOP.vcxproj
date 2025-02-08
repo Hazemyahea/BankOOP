@@ -140,6 +140,7 @@
     <ClCompile Include="clsFindUser.cpp" />
     <ClCompile Include="clsLogin.cpp" />
     <ClCompile Include="clsLogOut.cpp" />
+    <ClCompile Include="clsLogs.cpp" />
     <ClCompile Include="clsMainHeader.cpp" />
     <ClCompile Include="clsMainScreen.cpp" />
     <ClCompile Include="clsMainTransactionScreen.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="clsInputValidate.h" />
     <ClInclude Include="clsLogin.h" />
     <ClInclude Include="clsLogOut.h" />
+    <ClInclude Include="clsLogs.h" />
     <ClInclude Include="clsMainHeader.h" />
     <ClInclude Include="clsMainScreen.h" />
     <ClInclude Include="clsMainTransactionScreen.h" />
