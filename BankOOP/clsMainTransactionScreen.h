@@ -5,6 +5,7 @@
 #include "clsDeposit.h"
 #include "clsWitdraw.h"
 #include "clsAllBalance.h"
+#include "clsTransfer.h"
 class clsMainTransactionScreen :
     protected clsMainHeader
 {
@@ -15,13 +16,15 @@ private:
         Deposit = 1,
         withdraw = 2,
         TotalBalance=3,
-        MainMenu=4
+        Transfer=4,
+        MainMenu=5
     };
     static void _ShowAllTransctions() {
         cout << "1 - Deposit" << endl;
         cout << "2 - withdraw" << endl;
         cout << "3 - TotalBalance" << endl;
-        cout << "4 - Main Menu" << endl;
+        cout << "4 - Transfer" << endl;
+        cout << "5 - Main Menu" << endl;
     } static  void _GoBackToTransaction()
     {
         cout << setw(37) << left << "" << "\n\tPress any key to go back to Transaction...\n";
@@ -46,6 +49,11 @@ private:
         case enTransctions::TotalBalance:
             system("cls");
             clsAllBalance::GetAllBalance();
+            _GoBackToTransaction();
+            break;
+        case enTransctions::Transfer:
+            system("cls");
+            clsTransfer::MainTransferFunction();
             _GoBackToTransaction();
             break;
         case enTransctions::MainMenu:

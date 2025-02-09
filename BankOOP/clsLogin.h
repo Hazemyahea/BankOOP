@@ -3,7 +3,6 @@
 #include "Global.h"
 #include <iostream>
 #include <string>
-#include "clsUser.h"
 #include "clsMainScreen.h"
 class clsLogin : protected clsMainHeader
 {

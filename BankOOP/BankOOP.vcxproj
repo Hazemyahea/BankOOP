@@ -147,6 +147,7 @@
     <ClCompile Include="clsMangeUsersScreen.cpp" />
     <ClCompile Include="clsPermissions.cpp" />
     <ClCompile Include="ClsPerson.cpp" />
+    <ClCompile Include="clsTransaction.cpp" />
     <ClCompile Include="clsUpdateClient.cpp" />
     <ClCompile Include="clsUpdateUser.cpp" />
     <ClCompile Include="clsUser.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="clsPermissions.h" />
     <ClInclude Include="ClsPerson.h" />
     <ClInclude Include="clsString.h" />
+    <ClInclude Include="clsTransfer.h" />
     <ClInclude Include="clsUpdateClient.h" />
     <ClInclude Include="clsUpdateUser.h" />
     <ClInclude Include="clsUser.h" />
