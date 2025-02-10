@@ -8,7 +8,7 @@ class clsLogs :
     protected clsMainHeader
 {
 private:
-
+	
 public:
 
 	static void PrintLogs() {

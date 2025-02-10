@@ -93,6 +93,9 @@
     <ClCompile Include="clsTransaction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clsTransactionLogs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clsUtil.h">
@@ -183,6 +186,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clsTransfer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsTransactionLogs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
